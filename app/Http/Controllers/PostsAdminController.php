@@ -40,6 +40,7 @@ class PostsAdminController extends Controller
     public function edit($id)
     {
     	$post = $this->post->find($id);
+			//dd($post);
     	return view('admin.posts.edit', compact('post'));
     }
     public function update($id, PostRequest $request)

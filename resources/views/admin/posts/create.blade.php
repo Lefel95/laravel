@@ -11,16 +11,18 @@
 		@endforeach
 	</ul>
 @endif
-	{!! Form::open(['route'=>'admin.posts.store','method'=>'post']) !!}
-		@include('admin.posts._form')
+	<form action="{{ url('admin/posts/store') }}" method="post">
+			{{ csrf_field() }}
+			@include('admin.posts._form')
+
 
 		<div class="form-group">
-			{!!Form::label('tags', 'Tags')!!}
-			{!!Form::textarea('tags', null, ['class'=>'form-control'])!!}
+			<label for="tags">Tags: </label>
+			<textarea name="tags" rows="10" cols="50" class="form-control"></textarea>
 		</div>
 		<div class="form-group">
-			{!! Form::submit('Create', ['class'=>'btn btn-primary']) !!}
+			<input type="submit" class="btn btn-primary" value="Create">
 		</div>
 
-	{!! Form::close() !!}
+	</form>
 @endsection

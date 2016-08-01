@@ -10,17 +10,20 @@
 			@endforeach
 		</ul>
 	@endif
-	{!!Form::model($post,['route'=>['admin.posts.update', $post->id],'method'=>'put'])!!}
-	@include('admin.posts._form')
+	<form action="{{url('admin/posts/update')}}" method="post">
+		{{ csrf_field() }}
+		@include('admin.posts._form')
 
 	<div class="form-group">
-		{!!Form::label('tags', 'Tags')!!}
-		{!!Form::textarea('tags', $post->TagList, ['class'=>'form-control'])!!}
+		<label for="tags">Tags: </label>
+		<textarea name="tags" rows="10" cols="50" class="form-control">
+			{{isset($post->tags->name)?$post->tags->name:null}}
+		</textarea>
 	</div>
 	<div class="form-group">
-		{!!Form::submit('Edit', ['class'=>'btn btn-primary'])!!}
+		<input type="submit" class="btn btn.primary" value="Edit">
 	</div>
 
 
-	{!!Form::close()!!}
+	</form>
 @endsection
